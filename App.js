@@ -22,7 +22,7 @@ const App = () => {
       let { status } = await Location.requestPermissionsAsync();
 
       if (status !== "granted") {
-        setErrorMessaage("Access to location is needed to run this app");
+        setErrorMsg("Access to location is needed to run this app");
       }
 
       let location = await Location.getCurrentPositionAsync();
