@@ -13,17 +13,16 @@ export const WeatherProvider = props => {
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
-    load();
+    getWeatherInfo();
   }, []);
 
-  const load = async () => {
+  const getWeatherInfo = async () => {
     try {
       let { status } = await Location.requestPermissionsAsync();
 
       if (status !== "granted") {
         setErrorMsg("Access to location is needed to run this app");
       }
-
       let location = await Location.getCurrentPositionAsync();
       setLocation(location);
       const { latitude, longitude } = location.coords;
@@ -38,7 +37,6 @@ export const WeatherProvider = props => {
       } else {
         setErrorMsg(result.message);
       }
-      console.log(currentWeather);
     } catch (error) {
       setErrorMsg(error.message);
     }

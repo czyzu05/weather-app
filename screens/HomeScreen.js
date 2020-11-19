@@ -4,25 +4,27 @@ import { StyleSheet, Text, View } from "react-native";
 
 import { WeatherContext } from "../WeatherContext";
 
+import WeatherInfo from "../components/WeatherInfo";
+import Details from "../components/Details";
+
 const HomeScreen = () => {
   const [currentWeather, errorMsg] = useContext(WeatherContext);
 
   if (currentWeather) {
-    const {
-      main: { temp },
-    } = currentWeather;
-
     return (
       <View style={styles.container}>
-        <Text>{temp}</Text>
-        <StatusBar style="auto" />
+        <View style={styles.main}>
+          <StatusBar style="auto" />
+          <WeatherInfo />
+        </View>
+        <Details />
       </View>
     );
   } else {
     return (
       <View style={styles.container}>
-        <Text>{errorMsg}</Text>
         <StatusBar style="auto" />
+        <Text>{errorMsg}</Text>
       </View>
     );
   }
@@ -31,9 +33,12 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
+    backgroundColor: "#fff",
     justifyContent: "center",
+  },
+  main: {
+    justifyContent: "center",
+    flex: 1,
   },
 });
 
