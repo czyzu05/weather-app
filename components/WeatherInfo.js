@@ -1,45 +1,42 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { WeatherContext } from "../WeatherContext";
+import DetailsCart from "./DetailsCart";
 
 const WeatherInfo = () => {
   const [currentWeather] = useContext(WeatherContext);
   const {
-    main: { temp },
-    weather: [details],
     name,
+    sys: { country },
   } = currentWeather;
 
-  const { icon, main } = details;
-  const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
   return (
-    <View style={styles.weatherInfo}>
-      <Text>{name}</Text>
-      <Image style={styles.weatherIcon} source={{ uri: iconUrl }} />
-      <Text style={styles.textPrimary}>{temp}°</Text>
-      <Text style={styles.textSecondary}>{main}</Text>
+    <View style={styles.container}>
+      <Text style={styles.cityName}>
+        {name}, {country}
+      </Text>
+      <View style={styles.cartContainer}>
+        <DetailsCart />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  weatherInfo: {
+  container: {
+    flex: 1,
     alignItems: "center",
   },
-  weatherIcon: {
-    width: 100,
-    height: 100,
+  cityName: {
+    flex: 1,
+    fontWeight: "bold",
+    fontSize: 22,
+    margin: 20,
+    alignSelf: "flex-start",
   },
-  textPrimary: {
-    fontSize: 40,
-    color: "#000",
-  },
-  textSecondary: {
-    fontSize: 20,
-    color: "#000",
-    fontWeight: "500",
-    marginTop: 10,
-    textTransform: "uppercase",
+  cartContainer: {
+    flex: 15,
+    marginBottom: 15,
   },
 });
 

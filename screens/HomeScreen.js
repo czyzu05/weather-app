@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { WeatherContext } from "../WeatherContext";
 
 import WeatherInfo from "../components/WeatherInfo";
-import Details from "../components/Details";
+import NextDaysWeather from "../components/NextDaysWeather";
 
 const HomeScreen = () => {
   const [currentWeather, errorMsg] = useContext(WeatherContext);
@@ -13,11 +13,13 @@ const HomeScreen = () => {
   if (currentWeather) {
     return (
       <View style={styles.container}>
+        <StatusBar style="auto" />
         <View style={styles.main}>
-          <StatusBar style="auto" />
           <WeatherInfo />
         </View>
-        <Details />
+        <View style={styles.nextDaysContainer}>
+          <NextDaysWeather />
+        </View>
       </View>
     );
   } else {
@@ -33,12 +35,15 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     justifyContent: "center",
+    backgroundColor: "white",
   },
   main: {
     justifyContent: "center",
-    flex: 1,
+    flex: 9,
+  },
+  nextDaysContainer: {
+    flex: 3,
   },
 });
 
