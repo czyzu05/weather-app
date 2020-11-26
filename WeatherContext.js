@@ -9,6 +9,7 @@ const BASE_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?";
 export const WeatherProvider = props => {
   const [unitsSystem, setUnitsSystem] = useState("metric");
   const [currentWeather, setCurrentWeather] = useState(null);
+  const [hourlyWeather, setHourlyWeather] = useState(null);
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -28,6 +29,7 @@ export const WeatherProvider = props => {
       const { latitude, longitude } = location.coords;
 
       const weatherURL = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
+      const hourlyURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=daily&appid=${WEATHER_API_KEY}`;
 
       const response = await fetch(weatherURL);
       const result = await response.json();
@@ -37,13 +39,19 @@ export const WeatherProvider = props => {
       } else {
         setErrorMsg(result.message);
       }
+
+      const responseHourlyWeather = await fetch(hourlyURL);
+      const data = await responseHourlyWeather.json();
+      setHourlyWeather(data);
     } catch (error) {
       setErrorMsg(error.message);
     }
   };
 
   return (
-    <WeatherContext.Provider value={[currentWeather, errorMsg]}>
+    <WeatherContext.Provider
+      value={{ currentWeather, errorMsg, hourlyWeather }}
+    >
       {props.children}
     </WeatherContext.Provider>
   );

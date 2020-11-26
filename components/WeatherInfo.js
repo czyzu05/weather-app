@@ -4,7 +4,7 @@ import { WeatherContext } from "../WeatherContext";
 import DetailsCart from "./DetailsCart";
 
 const WeatherInfo = () => {
-  const [currentWeather] = useContext(WeatherContext);
+  const { currentWeather } = useContext(WeatherContext);
   const {
     name,
     sys: { country },

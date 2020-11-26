@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { WeatherContext } from "../WeatherContext";
+import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const DetailsCart = () => {
-  const [currentWeather] = useContext(WeatherContext);
+  const { currentWeather } = useContext(WeatherContext);
   const {
     main: { feels_like, humidity, pressure, temp },
     weather: [details],
@@ -20,7 +21,7 @@ const DetailsCart = () => {
       <View style={styles.mainInfo}>
         <Image style={styles.weatherImg} source={{ uri: iconUrl }} />
         <Text style={styles.description}>{description}</Text>
-        <Text>{date}</Text>
+        <Text style={{ color: "silver" }}>{date}</Text>
         <Text style={styles.temp}>{Math.floor(temp)}°</Text>
       </View>
       <View style={styles.additionalInfo}>
@@ -29,53 +30,58 @@ const DetailsCart = () => {
             ...styles.infoField,
             borderRightWidth: 1,
             borderTopWidth: 1,
-            borderColor: "black",
+            borderColor: "#B0E0E6",
           }}
         >
-          <Image style={styles.weatherImgInfo} source={{ uri: iconUrl }} />
+          <Feather name="wind" size={30} color="white" />
           <View style={styles.values}>
-            <Text>wind</Text>
-            <Text>{speed}km/j</Text>
+            <Text style={styles.valuesTitle}>wind</Text>
+            <Text style={styles.value}>{speed} km/j</Text>
           </View>
         </View>
         <View
           style={{
             ...styles.infoField,
             borderTopWidth: 1,
-            borderTopColor: "black",
+            borderTopColor: "#B0E0E6",
           }}
         >
-          <Image style={styles.weatherImgInfo} source={{ uri: iconUrl }} />
+          <Feather name="thermometer" size={30} color="white" />
           <View style={styles.values}>
-            <Text>feels like</Text>
-            <Text>{feels_like}°</Text>
+            <Text style={styles.valuesTitle}>feels like</Text>
+            <Text style={styles.value}>{feels_like}°</Text>
           </View>
         </View>
         <View
           style={{
             ...styles.infoField,
             borderTopWidth: 1,
-            borderTopColor: "black",
             borderRightWidth: 1,
+            borderTopColor: "#B0E0E6",
+            borderRightColor: "#B0E0E6",
           }}
         >
-          <Image style={styles.weatherImgInfo} source={{ uri: iconUrl }} />
+          <Ionicons name="ios-pulse" size={30} color="white" />
           <View style={styles.values}>
-            <Text>pressure</Text>
-            <Text>{pressure} mbar</Text>
+            <Text style={styles.valuesTitle}>pressure</Text>
+            <Text style={styles.value}>{pressure} mbar</Text>
           </View>
         </View>
         <View
           style={{
             ...styles.infoField,
             borderTopWidth: 1,
-            borderTopColor: "black",
+            borderTopColor: "#B0E0E6",
           }}
         >
-          <Image style={styles.weatherImgInfo} source={{ uri: iconUrl }} />
+          <MaterialCommunityIcons
+            name="water-percent"
+            size={30}
+            color="white"
+          />
           <View style={styles.values}>
-            <Text>humidity</Text>
-            <Text>{humidity}km/j</Text>
+            <Text style={styles.valuesTitle}>humidity</Text>
+            <Text style={styles.value}>{humidity}%</Text>
           </View>
         </View>
       </View>
@@ -88,7 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: 300,
     borderRadius: 10,
-    backgroundColor: "#427BFF",
+    backgroundColor: "#1E90FF",
   },
   mainInfo: {
     flex: 4,
@@ -106,11 +112,13 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 20,
     textTransform: "capitalize",
+    color: "#fff",
   },
   temp: {
     fontSize: 70,
     fontWeight: "bold",
     marginTop: 25,
+    color: "#fff",
   },
   infoField: {
     flexBasis: 150,
@@ -119,10 +127,16 @@ const styles = StyleSheet.create({
     height: 75,
     flexDirection: "row",
   },
-  weatherImgInfo: {
-    width: 30,
-    height: 20,
-    marginRight: 10,
+  values: {
+    marginLeft: 13,
+  },
+  value: {
+    color: "white",
+  },
+  valuesTitle: {
+    fontSize: 10,
+    textTransform: "uppercase",
+    color: "white",
   },
 });
 
