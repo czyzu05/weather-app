@@ -5,11 +5,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { WeatherContext } from "../WeatherContext";
 
 import WeatherInfo from "../components/WeatherInfo";
-import HourlyWeather from "../components/HourlyWeather";
+import HourlyWeatherElements from "../components/HourlyWeatherElements";
 
 const HomeScreen = () => {
   const { currentWeather, errorMsg } = useContext(WeatherContext);
-
   if (currentWeather) {
     return (
       <View style={styles.container}>
@@ -18,7 +17,7 @@ const HomeScreen = () => {
           <WeatherInfo />
         </View>
         <View style={styles.hourlyWeatherContainer}>
-          <HourlyWeather />
+          <HourlyWeatherElements />
         </View>
       </View>
     );

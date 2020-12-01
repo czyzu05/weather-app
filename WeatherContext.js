@@ -29,7 +29,7 @@ export const WeatherProvider = props => {
       const { latitude, longitude } = location.coords;
 
       const weatherURL = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
-      const hourlyURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=daily&appid=${WEATHER_API_KEY}`;
+      const hourlyURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=daily&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
 
       const response = await fetch(weatherURL);
       const result = await response.json();
