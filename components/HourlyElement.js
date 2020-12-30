@@ -12,7 +12,7 @@ const HourlyElement = ({ temp, dt, weather }) => {
     <View style={styles.container}>
       <Text>{formatDate.slice(10, 16)}</Text>
       <Image style={styles.img} source={{ uri: iconUrl }} />
-      <Text> {temp}</Text>
+      <Text> {Math.floor(temp)}°</Text>
     </View>
   );
 };
@@ -20,11 +20,14 @@ const HourlyElement = ({ temp, dt, weather }) => {
 const styles = StyleSheet.create({
   container: {
     width: 80,
-    height: 150,
+    height: 130,
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "#d4d9d6",
     borderRadius: 10,
-    margin: 8,
+    margin: 10,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   img: {
     width: 60,

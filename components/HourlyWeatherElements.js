@@ -10,7 +10,7 @@ const HourlyWeatherElements = () => {
   if (hourlyWeather) {
     return (
       <FlatList
-        data={hourlyWeather.hourly}
+        data={hourlyWeather.hourly.slice(0, 25)}
         renderItem={({ item }) => <HourlyElement {...item} key={item.dt} />}
         horizontal={true}
       />

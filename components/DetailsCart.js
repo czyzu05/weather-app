@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     flexBasis: 150,
     justifyContent: "center",
     alignItems: "center",
-    height: 75,
+    height: 72,
     flexDirection: "row",
   },
   values: {
