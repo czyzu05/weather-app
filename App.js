@@ -6,7 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { WeatherProvider } from "./WeatherContext";
 
 import HomeScreen from "./screens/HomeScreen";
-import DetailsScreen from "./screens/DetailsScreen";
+import NextDaysWeatherScreen from "./screens/NextDaysWeatherScreen";
 
 const Stack = createStackNavigator();
 
@@ -14,13 +14,9 @@ const App = () => {
   return (
     <WeatherProvider>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Weather" component={HomeScreen} />
-          <Stack.Screen
-            name="Details"
-            component={DetailsScreen}
-            options={({ route }) => ({ title: route.params.name })}
-          />
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Currently weather" component={HomeScreen} />
+          <Stack.Screen name="Week weather" component={NextDaysWeatherScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </WeatherProvider>

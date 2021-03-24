@@ -21,7 +21,7 @@ const DetailsCart = () => {
       <View style={styles.mainInfo}>
         <Image style={styles.weatherImg} source={{ uri: iconUrl }} />
         <Text style={styles.description}>{description}</Text>
-        <Text style={{ color: "silver" }}>{date}</Text>
+        <Text style={{ color: "#f2f2f2" }}>{date}</Text>
         <Text style={styles.temp}>{Math.floor(temp)}°</Text>
       </View>
       <View style={styles.additionalInfo}>

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { WeatherContext } from "../WeatherContext";
 import HourlyElement from "./HourlyElement";
@@ -11,12 +11,14 @@ const HourlyWeatherElements = () => {
     return (
       <FlatList
         data={hourlyWeather.hourly.slice(0, 25)}
-        renderItem={({ item }) => <HourlyElement {...item} key={item.dt} />}
-        horizontal={true}
+        renderItem={({ item, index }) => (
+          <HourlyElement {...item} key={item.dt} index={index} />
+        )}
+        horizontal
       />
     );
   } else {
-    return <Text>Error</Text>;
+    return <Text>Cannot connect with server, please try again</Text>;
   }
 };
 

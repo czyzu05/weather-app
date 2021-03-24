@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 
-const HourlyElement = ({ temp, dt, weather }) => {
+const HourlyElement = ({ temp, dt, weather, index }) => {
   const dateObject = new Date(dt * 1000);
   const formatDate = dateObject.toLocaleString();
 
@@ -9,10 +9,10 @@ const HourlyElement = ({ temp, dt, weather }) => {
 
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, index === 0 ? styles.firstElement : null]}>
       <Text>{formatDate.slice(10, 16)}</Text>
       <Image style={styles.img} source={{ uri: iconUrl }} />
-      <Text> {Math.floor(temp)}°</Text>
+      <Text> {index === 0 ? "Now" : `${Math.floor(temp)}°`}</Text>
     </View>
   );
 };
@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  firstElement: {
+    backgroundColor: "#1E90FF",
   },
   img: {
     width: 60,
