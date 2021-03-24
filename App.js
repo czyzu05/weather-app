@@ -16,7 +16,14 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Currently weather" component={HomeScreen} />
-          <Stack.Screen name="Week weather" component={NextDaysWeatherScreen} />
+          <Stack.Screen
+            name="Week weather"
+            component={NextDaysWeatherScreen}
+            options={{
+              headerStyle: { backgroundColor: "#1E90FF" },
+              headerTintColor: "#fff",
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </WeatherProvider>
